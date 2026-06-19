@@ -1,4 +1,4 @@
-function NavBar() {
+export function NavBar() {
   return (
     <nav className="flex items-center justify-between px-4 py-6 md:px-8 lg:px-16">
       <span className="text-2xl font-bold text-[#26231E] md:text-3xl">KP.</span>
@@ -20,5 +20,3 @@ function NavBar() {
     </nav>
   )
 }
-
-export default NavBar
