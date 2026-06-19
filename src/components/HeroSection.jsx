@@ -1,6 +1,6 @@
 import heroImg from '../assets/hero-dog.jpg'
 
-function HeroSection() {
+export function HeroSection() {
   return (
     <section className="px-4 py-8 md:px-8 md:py-12 lg:px-16 lg:py-16">
       <div className="mx-auto flex max-w-7xl flex-col items-center gap-10 lg:flex-row lg:items-start lg:justify-between lg:gap-8">
@@ -48,5 +48,3 @@ function HeroSection() {
     </section>
   )
 }
-
-export default HeroSection
