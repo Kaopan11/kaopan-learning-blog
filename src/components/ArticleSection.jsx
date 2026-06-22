@@ -1,5 +1,6 @@
 import { Search } from 'lucide-react'
 
+import { BlogCard } from '@/components/BlogCard'
 import { Input } from '@/components/ui/input'
 import {
   Select,
@@ -8,6 +9,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
+import { blogPosts } from '@/data/blogPosts'
 
 const categories = ['Highlight', 'Cat', 'Inspiration', 'General']
 
@@ -72,6 +74,21 @@ export default function ArticleSection() {
               </SelectContent>
             </Select>
           </div>
+        </div>
+
+        <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2">
+          {blogPosts.map((post) => (
+            <BlogCard
+              key={post.id}
+              image={post.image}
+              imagePosition={post.imagePosition}
+              category={post.category}
+              title={post.title}
+              description={post.description}
+              author={post.author}
+              date={post.date}
+            />
+          ))}
         </div>
       </div>
     </section>
