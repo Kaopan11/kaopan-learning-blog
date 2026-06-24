@@ -6,7 +6,7 @@ export function NavBar() {
       {/* Mobile */}
       <div className="flex items-center justify-between bg-[#F7F7F7] px-6 py-4 md:hidden">
         <span className="text-2xl font-semibold tracking-tight">
-          <span className="text-[#444444]">hh</span>
+          <span className="text-[#444444]">KP</span>
           <span className="text-[#25C2A0]">.</span>
         </span>
         <button
@@ -20,7 +20,10 @@ export function NavBar() {
 
       {/* Desktop */}
       <div className="hidden items-center justify-between px-4 py-6 md:flex md:px-8 lg:px-16">
-        <span className="text-2xl font-bold text-[#26231E] md:text-3xl">KP.</span>
+        <span className="text-2xl font-bold tracking-tight md:text-3xl">
+          <span className="text-[#26231E]">KP</span>
+          <span className="text-[#25C2A0]">.</span>
+        </span>
 
         <div className="flex items-center gap-3 md:gap-4">
           <button
