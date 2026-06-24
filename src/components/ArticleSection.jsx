@@ -11,7 +11,8 @@ import {
 } from '@/components/ui/select'
 import { blogPosts } from '@/data/blogPosts'
 
-const categories = ['Highlight', 'Cat', 'Inspiration', 'General']
+const categories = ["Highlight", "Cat", "Inspiration", "General"]
+const activeCategory = "Highlight"
 
 function SearchField({ className = '' }) {
   return (
@@ -41,12 +42,18 @@ export default function ArticleSection() {
         {/* Desktop */}
         <div className="hidden items-center justify-between rounded-2xl bg-[#F4F4F3] px-6 py-4 md:flex">
           <div className="flex items-center gap-8">
-            <span className="rounded-lg bg-[#D9D7D2] px-4 py-2 text-sm font-medium text-[#26231E]">
-              Highlight
-            </span>
-            <span className="text-sm text-[#75716B]">Cat</span>
-            <span className="text-sm text-[#75716B]">Inspiration</span>
-            <span className="text-sm text-[#75716B]">General</span>
+            {categories.map((category) => (
+              <span
+                key={category}
+                className={
+                  category === activeCategory
+                    ? "rounded-lg bg-[#D9D7D2] px-4 py-2 text-sm font-medium text-[#26231E]"
+                    : "text-sm text-[#75716B]"
+                }
+              >
+                {category}
+              </span>
+            ))}
           </div>
 
           <SearchField className="w-full max-w-xs lg:max-w-sm" />
