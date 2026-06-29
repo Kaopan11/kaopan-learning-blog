@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Search } from 'lucide-react'
 
 import { BlogCard } from '@/components/BlogCard'
@@ -11,8 +12,7 @@ import {
 } from '@/components/ui/select'
 import { blogPosts } from '@/data/blogPosts'
 
-const categories = ["Highlight", "Cat", "Inspiration", "General"]
-const activeCategory = "Highlight"
+const categories = ['Highlight', 'Cat', 'Inspiration', 'General']
 
 function SearchField({ className = '' }) {
   return (
@@ -32,6 +32,13 @@ function SearchField({ className = '' }) {
 }
 
 export default function ArticleSection() {
+  const [selectedCategory, setSelectedCategory] = useState('Highlight')
+
+  const filteredPosts =
+    selectedCategory === 'Highlight'
+      ? blogPosts
+      : blogPosts.filter((post) => post.category === selectedCategory)
+
   return (
     <section className="px-4 py-8 md:px-8 md:py-12 lg:px-16">
       <div className="mx-auto max-w-7xl">
@@ -42,18 +49,25 @@ export default function ArticleSection() {
         {/* Desktop */}
         <div className="hidden items-center justify-between rounded-2xl bg-[#F4F4F3] px-6 py-4 md:flex">
           <div className="flex items-center gap-8">
-            {categories.map((category) => (
-              <span
-                key={category}
-                className={
-                  category === activeCategory
-                    ? "rounded-lg bg-[#D9D7D2] px-4 py-2 text-sm font-medium text-[#26231E]"
-                    : "text-sm text-[#75716B]"
-                }
-              >
-                {category}
-              </span>
-            ))}
+            {categories.map((category) => {
+              const isActive = category === selectedCategory
+
+              return (
+                <button
+                  key={category}
+                  type="button"
+                  disabled={isActive}
+                  onClick={() => setSelectedCategory(category)}
+                  className={
+                    isActive
+                      ? 'rounded-lg bg-[#D9D7D2] px-4 py-2 text-sm font-medium text-[#26231E]'
+                      : 'rounded-lg px-4 py-2 text-sm text-[#75716B] transition-colors hover:bg-white'
+                  }
+                >
+                  {category}
+                </button>
+              )
+            })}
           </div>
 
           <SearchField className="w-full max-w-xs lg:max-w-sm" />
@@ -65,16 +79,16 @@ export default function ArticleSection() {
 
           <div className="flex flex-col gap-2">
             <span className="text-sm text-[#75716B]">Category</span>
-            <Select defaultValue="highlight">
+            <Select
+              value={selectedCategory}
+              onValueChange={setSelectedCategory}
+            >
               <SelectTrigger className="h-10 w-full border-[#E5E5E0] bg-white text-[#26231E]">
                 <SelectValue placeholder="Highlight" />
               </SelectTrigger>
               <SelectContent>
                 {categories.map((category) => (
-                  <SelectItem
-                    key={category}
-                    value={category.toLowerCase()}
-                  >
+                  <SelectItem key={category} value={category}>
                     {category}
                   </SelectItem>
                 ))}
@@ -84,7 +98,7 @@ export default function ArticleSection() {
         </div>
 
         <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2">
-          {blogPosts.map((post) => (
+          {filteredPosts.map((post) => (
             <BlogCard
               key={post.id}
               image={post.image}
