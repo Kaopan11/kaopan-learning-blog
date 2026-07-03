@@ -11,19 +11,11 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
+import { formatDate } from '@/lib/formatDate'
 
 const API_URL = 'https://blog-post-project-api.vercel.app/posts'
 const POSTS_PER_PAGE = 6
 const categories = ['Highlight', 'Cat', 'Inspiration', 'General']
-
-// แปลงวันที่ ISO 8601 ให้เป็นข้อความอ่านง่าย เช่น "11 September 2024"
-function formatDate(isoDateString) {
-  return new Date(isoDateString).toLocaleDateString('en-GB', {
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric',
-  })
-}
 
 function SearchField({ className = '' }) {
   return (
@@ -175,11 +167,12 @@ export default function ArticleSection() {
             {posts.map((post) => (
               <BlogCard
                 key={post.id}
+                id={post.id}
                 image={post.image}
                 category={post.category}
                 title={post.title}
                 description={post.description}
-                author={post.author}
+                author="Peerawat K."
                 date={formatDate(post.date)}
               />
             ))}
