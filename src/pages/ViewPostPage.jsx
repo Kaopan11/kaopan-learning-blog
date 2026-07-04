@@ -15,19 +15,19 @@ import heroImg from '@/assets/hero-dog.jpg'
 import { LoginPromptDialog } from '@/components/LoginPromptDialog'
 import { NavBar } from '@/components/NavBar'
 import { Footer } from '@/components/Footer'
+import { useAuth } from '@/contexts/AuthContext'
 import NotFoundPage from '@/pages/NotFoundPage'
 import { formatDate } from '@/lib/formatDate'
 import { parsePostContent } from '@/lib/parsePostContent'
 
 const API_URL = 'https://blog-post-project-api.vercel.app/posts'
 
-// สมมติว่าผู้ใช้ยังไม่ได้ล็อกอิน (ใช้ทดสอบการจำกัด Like / Comment)
-const isLoggedIn = false
-
 const AUTHOR_BIO =
   'I am a pet enthusiast and freelance writer who specializes in animal behavior and care. With a deep love for cats, I enjoy sharing insights on feline companionship and wellness.\n\nWhen I\'m not writing, I spend time volunteering at my local animal shelter, helping cats find loving homes.'
 
 export default function ViewPostPage() {
+  const { isLoggedIn } = useAuth()
+
   // ดึง postId จาก URL เช่น /post/1 → postId = "1"
   const { postId } = useParams()
 

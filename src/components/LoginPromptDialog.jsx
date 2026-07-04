@@ -1,3 +1,5 @@
+import { useLocation, useNavigate } from 'react-router-dom'
+
 import {
   AlertDialog,
   AlertDialogAction,
@@ -8,6 +10,19 @@ import {
 } from '@/components/ui/alert-dialog'
 
 export function LoginPromptDialog({ open, onOpenChange }) {
+  const navigate = useNavigate()
+  const location = useLocation()
+
+  const handleCreateAccount = () => {
+    onOpenChange(false)
+    navigate('/signup', { state: { from: location.pathname } })
+  }
+
+  const handleLogIn = () => {
+    onOpenChange(false)
+    navigate('/login', { state: { from: location.pathname } })
+  }
+
   return (
     <AlertDialog open={open} onOpenChange={onOpenChange}>
       <AlertDialogContent className="max-w-md rounded-2xl p-6">
@@ -29,7 +44,13 @@ export function LoginPromptDialog({ open, onOpenChange }) {
           </AlertDialogDescription>
         </AlertDialogHeader>
 
-        <AlertDialogAction className="mt-2 w-full rounded-full bg-[#26231E] py-3 text-base font-medium text-white hover:bg-[#43403B]">
+        <AlertDialogAction
+          onClick={(event) => {
+            event.preventDefault()
+            handleCreateAccount()
+          }}
+          className="mt-2 w-full cursor-pointer rounded-full bg-[#26231E] py-3 text-base font-medium text-white hover:bg-[#43403B]"
+        >
           Create account
         </AlertDialogAction>
 
@@ -37,6 +58,7 @@ export function LoginPromptDialog({ open, onOpenChange }) {
           Already have an account?{' '}
           <button
             type="button"
+            onClick={handleLogIn}
             className="cursor-pointer font-semibold text-[#26231E] underline"
           >
             Log in
