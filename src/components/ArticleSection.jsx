@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
-import { Loader2, Search } from 'lucide-react'
+import { Loader2 } from 'lucide-react'
 
 import { BlogCard } from '@/components/BlogCard'
-import { Input } from '@/components/ui/input'
+import { SearchField } from '@/components/SearchField'
 import {
   Select,
   SelectContent,
@@ -16,23 +16,6 @@ import { formatDate } from '@/lib/formatDate'
 const API_URL = 'https://blog-post-project-api.vercel.app/posts'
 const POSTS_PER_PAGE = 6
 const categories = ['Highlight', 'Cat', 'Inspiration', 'General']
-
-function SearchField({ className = '' }) {
-  return (
-    <div className={`relative ${className}`}>
-      <Input
-        type="search"
-        placeholder="Search"
-        readOnly
-        className="h-10 border-[#E5E5E0] bg-white pr-10 text-[#26231E] placeholder:text-[#75716B]"
-      />
-      <Search
-        className="pointer-events-none absolute top-1/2 right-3 h-4 w-4 -translate-y-1/2 text-[#75716B]"
-        strokeWidth={1.5}
-      />
-    </div>
-  )
-}
 
 export default function ArticleSection() {
   const [selectedCategory, setSelectedCategory] = useState('Highlight')

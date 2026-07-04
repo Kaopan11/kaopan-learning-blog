@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
+import { toast } from 'sonner'
 import {
   Copy,
   Facebook,
@@ -73,6 +74,41 @@ export default function ViewPostPage() {
       return
     }
     setComment('')
+  }
+
+  // คัดลอก URL ปัจจุบันไปยัง clipboard แล้วแจ้งเตือนด้วย toast
+  const handleCopyLink = async () => {
+    try {
+      await navigator.clipboard.writeText(window.location.href)
+      toast.success('Copied!', {
+        description: 'This article has been copied to your clipboard.',
+      })
+    } catch (error) {
+      console.error('Failed to copy link:', error)
+    }
+  }
+
+  // เปิดหน้าต่างใหม่ไปยัง share API ของแต่ละแพลตฟอร์ม
+  const openShareWindow = (shareUrl) => {
+    window.open(shareUrl, '_blank', 'noopener,noreferrer')
+  }
+
+  const handleShareFacebook = () => {
+    // เข้ารหัส URL ปัจจุบันก่อนแนบเป็น query parameter
+    const encodedUrl = encodeURIComponent(window.location.href)
+    openShareWindow(`https://www.facebook.com/share.php?u=${encodedUrl}`)
+  }
+
+  const handleShareLinkedIn = () => {
+    const encodedUrl = encodeURIComponent(window.location.href)
+    openShareWindow(
+      `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`,
+    )
+  }
+
+  const handleShareTwitter = () => {
+    const encodedUrl = encodeURIComponent(window.location.href)
+    openShareWindow(`https://www.twitter.com/share?&url=${encodedUrl}`)
   }
 
   if (isLoading) {
@@ -170,6 +206,7 @@ export default function ViewPostPage() {
             <div className="flex items-center gap-3">
               <button
                 type="button"
+                onClick={handleCopyLink}
                 className="flex cursor-pointer items-center gap-2 rounded-full border border-[#26231E] bg-white px-4 py-2 text-sm font-medium text-[#26231E]"
               >
                 <Copy className="h-4 w-4" />
@@ -177,6 +214,7 @@ export default function ViewPostPage() {
               </button>
               <button
                 type="button"
+                onClick={handleShareFacebook}
                 aria-label="Share on Facebook"
                 className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-[#26231E] bg-white text-[#26231E]"
               >
@@ -184,6 +222,7 @@ export default function ViewPostPage() {
               </button>
               <button
                 type="button"
+                onClick={handleShareLinkedIn}
                 aria-label="Share on LinkedIn"
                 className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-[#26231E] bg-white text-[#26231E]"
               >
@@ -191,6 +230,7 @@ export default function ViewPostPage() {
               </button>
               <button
                 type="button"
+                onClick={handleShareTwitter}
                 aria-label="Share on Twitter"
                 className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-[#26231E] bg-white text-[#26231E]"
               >

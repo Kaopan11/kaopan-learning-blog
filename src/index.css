@@ -128,3 +128,29 @@
     @apply font-sans;
     }
 }
+
+/* sonner success toast — พื้นหลังเขียว ตัวอักษรขาว ตาม design */
+[data-sonner-toast][data-type='success'] {
+  background-color: #22c55e !important;
+  border-color: #22c55e !important;
+  color: #ffffff !important;
+}
+
+[data-sonner-toast][data-type='success'] [data-title] {
+  color: #ffffff !important;
+  font-weight: 700;
+}
+
+[data-sonner-toast][data-type='success'] [data-description] {
+  color: rgb(255 255 255 / 0.95) !important;
+}
+
+[data-sonner-toast][data-type='success'] [data-close-button] {
+  color: #ffffff !important;
+  border-color: rgb(255 255 255 / 0.3) !important;
+  background-color: rgb(255 255 255 / 0.1) !important;
+}
+
+[data-sonner-toast][data-type='success'] [data-close-button]:hover {
+  background-color: rgb(255 255 255 / 0.2) !important;
+}
