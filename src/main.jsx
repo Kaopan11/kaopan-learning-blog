@@ -3,12 +3,14 @@ import { createRoot } from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
 import './index.css'
 import App from './App.jsx'
+import { Toaster } from '@/components/ui/sonner'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     {/* BrowserRouter เปิดใช้ client-side routing ทั้งแอป */}
     <BrowserRouter>
       <App />
+      <Toaster position="bottom-right" />
     </BrowserRouter>
   </StrictMode>,
 )
