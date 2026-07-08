@@ -1,16 +1,17 @@
-import { NavBar } from './components/NavBar'
-import { HeroSection } from './components/HeroSection'
-import ArticleSection from './components/ArticleSection'
-import { Footer } from './components/Footer'
+import { Routes, Route } from 'react-router-dom'
+
+import LandingPage from '@/pages/LandingPage'
+import ViewPostPage from '@/pages/ViewPostPage'
+import NotFoundPage from '@/pages/NotFoundPage'
 
 function App() {
   return (
-    <main className="min-h-screen bg-white">
-      <NavBar />
-      <HeroSection />
-      <ArticleSection />
-      <Footer />
-    </main>
+    // กำหนดเส้นทาง (routes) ของแอป — แต่ละ path แมปไปยังหน้าที่ต่างกัน
+    <Routes>
+      <Route path="/" element={<LandingPage />} />
+      <Route path="/post/:postId" element={<ViewPostPage />} />
+      <Route path="*" element={<NotFoundPage />} />
+    </Routes>
   )
 }
 

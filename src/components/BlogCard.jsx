@@ -1,8 +1,10 @@
+import { Link } from 'react-router-dom'
 import heroImg from '../assets/hero-dog.jpg'
 
 import { cn } from '@/lib/utils'
 
 export function BlogCard({
+  id,
   image,
   category,
   title,
@@ -11,9 +13,11 @@ export function BlogCard({
   date,
   imagePosition = 'center',
 }) {
+  const postPath = `/post/${id}`
+
   return (
     <div className="flex flex-col gap-4">
-      <a href="#" className="relative h-[212px] sm:h-[360px]">
+      <Link to={postPath} className="relative h-[212px] sm:h-[360px]">
         <img
           className={cn(
             'h-full w-full rounded-md object-cover',
@@ -26,18 +30,18 @@ export function BlogCard({
           src={image}
           alt={title}
         />
-      </a>
+      </Link>
       <div className="flex flex-col">
         <div className="flex">
           <span className="mb-2 rounded-full bg-green-200 px-3 py-1 text-sm font-semibold text-green-600">
             {category}
           </span>
         </div>
-        <a href="#">
+        <Link to={postPath}>
           <h2 className="mb-2 line-clamp-2 text-start text-xl font-bold hover:underline">
             {title}
           </h2>
-        </a>
+        </Link>
         <p className="text-muted-foreground mb-4 line-clamp-3 grow text-sm">
           {description}
         </p>
@@ -47,7 +51,7 @@ export function BlogCard({
             src={heroImg}
             alt={author}
           />
-          <span>{author}</span>
+          <span>Peerawat K.</span>
           <span className="mx-2 text-gray-300">|</span>
           <span>{date}</span>
         </div>
