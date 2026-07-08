@@ -4,13 +4,16 @@ import { BrowserRouter } from 'react-router-dom'
 import './index.css'
 import App from './App.jsx'
 import { Toaster } from '@/components/ui/sonner'
+import { AuthProvider } from '@/contexts/AuthContext'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     {/* BrowserRouter เปิดใช้ client-side routing ทั้งแอป */}
     <BrowserRouter>
-      <App />
-      <Toaster position="bottom-right" />
+      <AuthProvider>
+        <App />
+        <Toaster position="bottom-right" />
+      </AuthProvider>
     </BrowserRouter>
   </StrictMode>,
 )

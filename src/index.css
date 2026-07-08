@@ -154,3 +154,29 @@
 [data-sonner-toast][data-type='success'] [data-close-button]:hover {
   background-color: rgb(255 255 255 / 0.2) !important;
 }
+
+/* sonner error toast — พื้นหลังแดง ตัวอักษรขาว สำหรับ login ล้มเหลว */
+[data-sonner-toast][data-type='error'] {
+  background-color: #ef4444 !important;
+  border-color: #ef4444 !important;
+  color: #ffffff !important;
+}
+
+[data-sonner-toast][data-type='error'] [data-title] {
+  color: #ffffff !important;
+  font-weight: 700;
+}
+
+[data-sonner-toast][data-type='error'] [data-description] {
+  color: rgb(255 255 255 / 0.95) !important;
+}
+
+[data-sonner-toast][data-type='error'] [data-close-button] {
+  color: #ffffff !important;
+  border-color: rgb(255 255 255 / 0.3) !important;
+  background-color: rgb(255 255 255 / 0.1) !important;
+}
+
+[data-sonner-toast][data-type='error'] [data-close-button]:hover {
+  background-color: rgb(255 255 255 / 0.2) !important;
+}
