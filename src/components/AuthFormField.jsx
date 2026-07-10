@@ -28,7 +28,7 @@ export function AuthFormField({
         className={cn(
           'h-11 border-[#E5E5E0] bg-white text-[#26231E] placeholder:text-[#75716B]',
           isInvalid &&
-            '!border-red-500 !text-red-500 focus-visible:!border-red-500 focus-visible:ring-red-500/20',
+            'border-red-500! text-red-500! focus-visible:border-red-500! focus-visible:ring-red-500/20',
         )}
       />
       {error && <p className="text-sm text-red-500">{error}</p>}
