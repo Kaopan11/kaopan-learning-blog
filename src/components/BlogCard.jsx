@@ -1,3 +1,4 @@
+// BlogCard — การ์ดแสดงบทความ 1 รายการ (ใช้ใน ArticleSection)
 import { Link } from 'react-router-dom'
 import heroImg from '../assets/hero-dog.jpg'
 

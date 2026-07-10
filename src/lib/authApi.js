@@ -1,12 +1,18 @@
+// authApi.js — ฟังก์ชันเกี่ยวกับ authentication ทั้งหมด
+// - เรียก API จริงที่ blog-post-project-api-with-db
+// - มี localStorage fallback เมื่อ API ล่ม (demo mode)
 import axios from 'axios'
 
 export const AUTH_API_URL =
   'https://blog-post-project-api-with-db.vercel.app/auth'
 
+// คีย์ localStorage สำหรับเก็บ mock users และ session ปัจจุบัน
 const MOCK_USERS_KEY = 'kp_blog_mock_users'
 const SESSION_KEY = 'kp_blog_auth_session'
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+
+// --- Validation & Redirect ---
 
 // ตรวจสอบรูปแบบ email และความยาว password ก่อนส่งไป API
 export function validateSignUpForm({ email, password }) {
@@ -34,6 +40,8 @@ export function getAuthRedirectPath(location) {
   return '/'
 }
 
+// --- Session (localStorage) ---
+
 export function getStoredSession() {
   try {
     const session = localStorage.getItem(SESSION_KEY)
@@ -50,6 +58,7 @@ export function saveSession(user) {
       name: user.name,
       username: user.username,
       email: user.email,
+      avatarUrl: user.avatarUrl ?? null,
       accessToken: user.accessToken ?? null,
     }),
   )
@@ -58,6 +67,8 @@ export function saveSession(user) {
 export function clearSession() {
   localStorage.removeItem(SESSION_KEY)
 }
+
+// --- Mock users fallback (เมื่อ API ล่ม) ---
 
 function getMockUsers() {
   try {
@@ -121,15 +132,18 @@ function parseRegisterApiError(error) {
   return null
 }
 
-function toSessionUser({ name, username, email, accessToken }) {
+// แปลงข้อมูล user ให้เป็นรูปแบบ session ที่ใช้ทั้งแอป
+function toSessionUser({ name, username, email, avatarUrl, accessToken }) {
   return {
     name: name || username || email,
     username: username || email.split('@')[0],
     email,
+    avatarUrl: avatarUrl ?? null,
     accessToken: accessToken ?? null,
   }
 }
 
+// ดึงโปรไฟล์จาก API หลัง login สำเร็จ (ใช้ access token)
 async function fetchUserProfile(accessToken, fallbackEmail) {
   try {
     const { data } = await axios.get(`${AUTH_API_URL}/get-user`, {
@@ -146,6 +160,8 @@ async function fetchUserProfile(accessToken, fallbackEmail) {
     return toSessionUser({ email: fallbackEmail, accessToken })
   }
 }
+
+// --- Public API ---
 
 // เรียก API register จริง — ถ้า server error ใช้ localStorage เป็น fallback สำหรับ demo
 export async function registerUser(form) {
@@ -177,7 +193,7 @@ export async function registerUser(form) {
   }
 }
 
-// เรียก API login จริง — ถ้า API ไม่รู้จัก user ให้ลอง localStorage fallback (user ที่ sign up ตอน API down)
+// เรียก API login จริง — ถ้า API ไม่รู้จัก user ให้ลอง localStorage fallback
 export async function loginUser(form) {
   try {
     const { data } = await axios.post(`${AUTH_API_URL}/login`, form)

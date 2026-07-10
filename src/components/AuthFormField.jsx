@@ -1,3 +1,4 @@
+// AuthFormField — ช่องกรอกฟอร์มสำหรับหน้า Login / Sign up (รองรับ error state สีแดง)
 import { Input } from '@/components/ui/input'
 import { cn } from '@/lib/utils'
 

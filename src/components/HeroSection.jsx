@@ -1,3 +1,4 @@
+// HeroSection — ส่วนหัวหน้าแรก (headline + รูป + ข้อมูลผู้เขียน)
 import heroImg from '../assets/hero-dog.jpg'
 
 export function HeroSection() {

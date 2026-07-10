@@ -1,3 +1,4 @@
+// AuthLayout — layout ร่วมของหน้า Login / Sign up (NavBar + การ์ดฟอร์มสีครีม)
 import { NavBar } from '@/components/NavBar'
 
 export function AuthLayout({ children }) {

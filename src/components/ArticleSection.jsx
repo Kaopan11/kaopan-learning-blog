@@ -1,3 +1,5 @@
+// ArticleSection — ส่วนแสดงรายการบทความบนหน้าแรก
+// ดึงจาก Posts API, กรองหมวด, ค้นหา, โหลดเพิ่มด้วยปุ่ม View more
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Loader2 } from 'lucide-react'

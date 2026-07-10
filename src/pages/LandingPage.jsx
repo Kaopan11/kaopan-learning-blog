@@ -1,3 +1,4 @@
+// LandingPage — หน้าแรกของบล็อก ประกอบด้วย Hero + รายการบทความ + Footer
 import { NavBar } from '@/components/NavBar'
 import { HeroSection } from '@/components/HeroSection'
 import ArticleSection from '@/components/ArticleSection'

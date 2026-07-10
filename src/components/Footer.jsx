@@ -1,3 +1,4 @@
+// Footer — ส่วนท้ายหน้าเว็บ (ลิงก์โซเชียล + กลับหน้าแรก)
 import { Link } from 'react-router-dom'
 import { Linkedin, Github } from 'lucide-react'
 
