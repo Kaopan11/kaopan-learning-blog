@@ -1,3 +1,4 @@
+// blogPosts.js — ข้อมูลบทความ mock เก่า (ตอนนี้ใช้ Posts API เป็นหลักแล้ว)
 export const blogPosts = [
     {
       id: 1,

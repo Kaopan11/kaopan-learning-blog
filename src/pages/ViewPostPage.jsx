@@ -1,3 +1,5 @@
+// ViewPostPage — หน้ารายละเอียดบทความ (/post/:postId)
+// ดึงข้อมูลจาก Posts API, แสดงเนื้อหา, share, comment (ต้อง login)
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
@@ -22,6 +24,7 @@ import { parsePostContent } from '@/lib/parsePostContent'
 
 const API_URL = 'https://blog-post-project-api.vercel.app/posts'
 
+// ข้อมูล bio ผู้เขียน (hardcode ตาม design)
 const AUTHOR_BIO =
   'I am a pet enthusiast and freelance writer who specializes in animal behavior and care. With a deep love for cats, I enjoy sharing insights on feline companionship and wellness.\n\nWhen I\'m not writing, I spend time volunteering at my local animal shelter, helping cats find loving homes.'
 
@@ -37,6 +40,7 @@ export default function ViewPostPage() {
   const [comment, setComment] = useState('')
   const [showLoginDialog, setShowLoginDialog] = useState(false)
 
+  // ดึงโพสต์จาก API เมื่อ postId ใน URL เปลี่ยน
   useEffect(() => {
     const fetchPost = async () => {
       setIsLoading(true)

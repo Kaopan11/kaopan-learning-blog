@@ -1,3 +1,4 @@
+// Toaster — ตั้งค่า toast notification ทั้งแอป (success เขียว, error แดง ใน index.css)
 import { Toaster as Sonner } from 'sonner'
 import {
   CircleCheckIcon,

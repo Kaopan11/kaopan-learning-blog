@@ -1,3 +1,5 @@
+// LoginPage — หน้าเข้าสู่ระบบ
+// เรียก loginUser() → บันทึก session → redirect กลับหน้าเดิม (ถ้ามี)
 import { useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { toast } from 'sonner'

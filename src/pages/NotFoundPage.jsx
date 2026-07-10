@@ -1,3 +1,4 @@
+// NotFoundPage — หน้า 404 เมื่อ URL ไม่ตรง หรือโพสต์ไม่พบ
 import { Link } from 'react-router-dom'
 import { AlertCircle } from 'lucide-react'
 
