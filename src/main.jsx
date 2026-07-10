@@ -1,3 +1,4 @@
+// จุดเริ่มต้นของแอป — mount React ลง DOM และห่อ providers ที่ใช้ทั้งโปรเจกต
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'

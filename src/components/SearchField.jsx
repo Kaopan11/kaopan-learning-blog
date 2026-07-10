@@ -1,3 +1,4 @@
+// SearchField — ช่องค้นหาบทความแบบ live search (debounce 300ms)
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
@@ -37,6 +38,7 @@ export function SearchField({ className = '' }) {
     return () => clearTimeout(timeoutId)
   }, [keyword])
 
+  // ปิด dropdown เมื่อคลิกนอกพื้นที่ค้นหา
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (

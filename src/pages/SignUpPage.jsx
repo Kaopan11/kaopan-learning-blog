@@ -1,3 +1,5 @@
+// SignUpPage — หน้าสมัครสมาชิก
+// validate ฝั่ง client → เรียก registerUser() → แสดงหน้า success → redirect
 import { useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { Check } from 'lucide-react'
@@ -58,6 +60,7 @@ export default function SignUpPage() {
     }
   }
 
+  // หน้าแสดงเมื่อสมัครสำเร็จ
   if (isSuccess) {
     return (
       <AuthLayout>

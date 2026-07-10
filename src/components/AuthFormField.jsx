@@ -1,3 +1,4 @@
+// AuthFormField — ช่องกรอกฟอร์มสำหรับหน้า Login / Sign up (รองรับ error state สีแดง)
 import { Input } from '@/components/ui/input'
 import { cn } from '@/lib/utils'
 
@@ -28,7 +29,7 @@ export function AuthFormField({
         className={cn(
           'h-11 border-[#E5E5E0] bg-white text-[#26231E] placeholder:text-[#75716B]',
           isInvalid &&
-            '!border-red-500 !text-red-500 focus-visible:!border-red-500 focus-visible:ring-red-500/20',
+            'border-red-500! text-red-500! focus-visible:border-red-500! focus-visible:ring-red-500/20',
         )}
       />
       {error && <p className="text-sm text-red-500">{error}</p>}

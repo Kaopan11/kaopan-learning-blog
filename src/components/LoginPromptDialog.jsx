@@ -1,3 +1,5 @@
+// LoginPromptDialog — dialog เตือนให้ login ก่อนกด Like/Comment ในหน้าบทความ
+// ส่ง state.from เพื่อ redirect กลับมาหน้าเดิมหลัง login/signup
 import { useLocation, useNavigate } from 'react-router-dom'
 
 import {
